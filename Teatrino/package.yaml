@@ -1,0 +1,72 @@
+name:                Teatrino
+version:             0.1.0.0
+github:              "adbarwell/Teatrino"
+license:             BSD3
+author:              "Adam D. Barwell"
+maintainer:          "adb23@st-andrews.ac.uk"
+copyright:           "2023 Adam D. Barwell"
+
+extra-source-files:
+- CHANGELOG.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/Teatrino#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- directory
+- filepath
+- parsec
+- cmdargs
+- list-predicate
+- pretty-simple
+- text
+- deepseq
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+- -Wno-unused-local-binds
+
+library:
+  source-dirs: src
+
+executables:
+  Teatrino:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Teatrino
+    when:        
+    - condition: false        
+      other-modules: Paths_Teatrino
+
+benchmarks:
+  Teatrino-bench:
+    main:                Main.hs
+    source-dirs:         benchmark
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Teatrino
+    - criterion
+    - bytestring
+    - cassava
